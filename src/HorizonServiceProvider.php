@@ -16,20 +16,22 @@ class HorizonServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @return void
      */
     public function boot()
     {
         $this->registerEvents();
-        $this->registerRoutes();
-        $this->registerResources();
+//        $this->registerRoutes();
+//        $this->registerResources();
         $this->offerPublishing();
-        $this->registerCommands();
+//        $this->registerCommands();
     }
 
     /**
      * Register the Horizon job events.
      *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @return void
      */
     protected function registerEvents()
@@ -82,9 +84,9 @@ class HorizonServiceProvider extends ServiceProvider
     protected function offerPublishing()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../stubs/HorizonServiceProvider.stub' => app_path('Providers/HorizonServiceProvider.php'),
-            ], 'horizon-provider');
+//            $this->publishes([
+//                __DIR__.'/../stubs/HorizonServiceProvider.stub' => app_path('Providers/HorizonServiceProvider.php'),
+//            ], 'horizon-provider');
 
             $this->publishes([
                 __DIR__.'/../config/horizon.php' => config_path('horizon.php'),
@@ -129,6 +131,7 @@ class HorizonServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      *
+     * @throws \Exception
      * @return void
      */
     public function register()
@@ -149,6 +152,7 @@ class HorizonServiceProvider extends ServiceProvider
     /**
      * Setup the configuration for Horizon.
      *
+     * @throws \Exception
      * @return void
      */
     protected function configure()
